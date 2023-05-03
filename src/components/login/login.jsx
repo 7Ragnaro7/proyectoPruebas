@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 
-function LoginForm() {
+export function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
@@ -47,5 +47,3 @@ function LoginForm() {
         </form>
     );
 }
-
-export default LoginForm;
