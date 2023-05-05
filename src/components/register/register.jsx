@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './register.css';
@@ -8,13 +8,20 @@ export function Register() {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (localStorage.getItem('token')){
+      navigate('/welcome');
+    }
+  })
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    navigate('/');
     try {
-      const auth = { username, password };
-      const response = await axios.post('/register', { auth });
+      const response = await axios.post('http://127.0.0.1:5000/register', { username, password });
+      console.log(response)
+      navigate('/');
     } catch (error) {
+      alert('Invalid Username, Password');
       console.error(error);
     }
   };

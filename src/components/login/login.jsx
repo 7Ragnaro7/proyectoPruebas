@@ -1,23 +1,36 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import './Login.css';
+import { useNavigate } from 'react-router-dom';
+import './login.css';
 
 export function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem('token')){
+      navigate('/welcome');
+    }
+  })
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post('/login', {}, {
+      const response = await axios.post('http://127.0.0.1:5000/login', {}, {
         auth: {
           username: username,
           password: password
         }
       });
+      console.log(response.data);
+      localStorage.setItem('username', username)
+      localStorage.setItem('token', response.data.token)
+      navigate('/welcome');
     }
     catch (error) {
+      alert('Invalid username or password');
       console.error(error);
     }
   };
