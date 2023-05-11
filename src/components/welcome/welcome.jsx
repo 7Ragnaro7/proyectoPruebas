@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 export function Welcome() {
     const navigate = useNavigate();
@@ -47,7 +48,10 @@ export function Welcome() {
             <h1>
                 Welcome {localStorage.getItem('username')}!
             </h1>
-            Esta es la página que se redirige cuando inicia sesión satisfactoriamente.
+                <p className="add-item-link">
+                    Agregar producto{' '}
+                    <Link to='/addItem' className="item-link">Agregar</Link>
+                </p>
         </div>
         
     )
