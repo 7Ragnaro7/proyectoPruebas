@@ -52,6 +52,10 @@ export function Welcome() {
                     Agregar producto{' '}
                     <Link to='/addItem' className="item-link">Agregar</Link>
                 </p>
+                <p className="list-item-link">
+                    Listar producto{' '}
+                    <Link to='/listItem' className="list-link">Listar</Link>
+                </p>
         </div>
         
     )

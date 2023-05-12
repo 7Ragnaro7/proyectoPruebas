@@ -10,22 +10,19 @@ export function Item() {
     const [unit, setUnit] = useState('');
     const navigate = useNavigate();
     const jwt_token = localStorage.getItem('token');
-
+    const options = {
+        method: 'POST',
+        url: 'http://localhost:5000/product/create',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-access-tokens': jwt_token
+        },
+        data: {name: name, price: price, weight: weight, unit: unit}
+    };
     const handleSubmit = async (event) => {
         event.preventDefault();
         try{
-            const response = await axios.post('http://127.0.0.1:5000/product/create',{
-                data: {
-                    name: name,
-                    price: price,
-                    weight: weight,
-                    unit: unit
-                }
-            },{
-                headers:{
-                    'x-access-tokens': jwt_token
-                }
-            });
+            const response = await axios.request(options)
             console.log(response.data);
             navigate('/welcome');
         }

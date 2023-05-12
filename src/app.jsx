@@ -5,6 +5,7 @@ import { AdmRegister } from './components/register-admin/register-admin';
 import { Welcome } from './components/welcome/welcome';
 import { Logout } from './components/logout/logout';
 import { Item } from './components/createItem/item';
+import { ListItem } from './components/listItem/listItem';
 
 function App () {
     return(
@@ -15,6 +16,7 @@ function App () {
             <Route path='/register/admin' element={<AdmRegister/>} />
             <Route path='/logout' element={<Logout/>} />
             <Route path='/addItem' element={<Item/>} />
+            <Route path='/listItem' element={<ListItem/>} />
         </Routes>
     );
 }
