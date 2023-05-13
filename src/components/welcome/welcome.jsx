@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import API_BASE_URL from '../../config/baseUrl'
 
 export function Welcome() {
     const navigate = useNavigate();
@@ -9,7 +10,7 @@ export function Welcome() {
     
     async function fetchToken() {
         try {
-            const response = await axios.get('http://127.0.0.1:5000/authorize', {
+            const response = await axios.get(API_BASE_URL+'/authorize', {
                 headers: {
                     'x-access-tokens': jwt_token
                 }

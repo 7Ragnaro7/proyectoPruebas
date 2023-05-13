@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import API_BASE_URL from '../../config/baseUrl'
 import './item.css';
 
 export function Item() {
@@ -12,7 +13,7 @@ export function Item() {
     const jwt_token = localStorage.getItem('token');
     const options = {
         method: 'POST',
-        url: 'http://localhost:5000/product/create',
+        url: API_BASE_URL+'/product/create',
         headers: {
           'Content-Type': 'application/json',
           'x-access-tokens': jwt_token

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import API_BASE_URL from '../../config/baseUrl'
 import './login.css';
 
 export function Login() {
@@ -18,7 +19,7 @@ export function Login() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post('http://127.0.0.1:5000/login', {}, {
+      const response = await axios.post(API_BASE_URL+'/login', {}, {
         auth: {
           username: username,
           password: password
