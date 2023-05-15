@@ -3,13 +3,12 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 export function ListItem() {
-    const [name, setName] = useState('');
-    const [price, setPrice] = useState('');
-    const [weight, setWeight] = useState('');
-    const [unit, setUnit] = useState('');
     const navigate = useNavigate();
     const jwt_token = localStorage.getItem('token');
-    let lista = '';
+    let parsed_json;
+    let nombresCosto = [];
+    let mostrar = [];
+    let minValue = 9999;
     const options = {
         method: 'GET',
         url: 'http://localhost:5000/products',
@@ -32,9 +31,20 @@ export function ListItem() {
         try {
             fetchData().then(response => {
                 if (response.status === 200) {
-                    lista = response.data.list_of_products;
-                    console.log(lista);
+                    const lista = response.data.list_of_products;
+                    const obj = JSON.stringify(lista);
+                    parsed_json = JSON.parse(obj);
+                    if(minValue > Object.keys(parsed_json).length){
+                        minValue = Object.keys(parsed_json).length;
+                    }
                 }
+                for(let i = 0; i < Object.keys(parsed_json).length; i++){
+                    nombresCosto.push([parsed_json[i].name, parsed_json[i].price]);
+                }
+                if(nombresCosto.length == minValue){
+                    mostrar = nombresCosto;
+                }
+                console.log(mostrar);
             }
             );
         } catch (error) {
@@ -43,7 +53,7 @@ export function ListItem() {
     })
     return (
         <div className="add-item-container">
-            <pre>Hola{JSON.stringify(lista, null, 2)}</pre>
+            <pre>Hola</pre>
         </div>
     );
 }
