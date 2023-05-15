@@ -9,7 +9,7 @@ export function ListItem() {
     const jwt_token = localStorage.getItem('token');
     let parsed_json;
     let nombresCosto = [];
-    let mostrar = [];
+    let mostrarElementos = [];
     let minValue = 9999;
     const options = {
         method: 'GET',
@@ -46,7 +46,7 @@ export function ListItem() {
                 if(nombresCosto.length == minValue){
                     mostrar = nombresCosto;
                 }
-                console.log(mostrar);
+                console.log(mostrarElementos);
             }
             );
         } catch (error) {
