@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import API_BASE_URL from '../../config/baseUrl'
 import './register-admin.css';
 
 export function AdmRegister() {
@@ -18,7 +19,7 @@ export function AdmRegister() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post('http://127.0.0.1:5000/register', { username, password, admin_key });
+      const response = await axios.post(API_BASE_URL+'/register', { username, password, admin_key });
       console.log(response)
       navigate('/');
     } catch (error) {

@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import API_BASE_URL from '../../config/baseUrl'
+
 
 export function ListItem() {
     const navigate = useNavigate();
@@ -11,7 +13,7 @@ export function ListItem() {
     let minValue = 9999;
     const options = {
         method: 'GET',
-        url: 'http://localhost:5000/products',
+        url: API_BASE_URL+'/products',
         headers: {
             'x-access-tokens': jwt_token
         }
