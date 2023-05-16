@@ -46,8 +46,8 @@ export function ListItem() {
   }, []);
 
   if (isLoading) {
-    return <div>Cargando...</div>;
-  }
+    return <div className="cargando-container"><div className="cargando">Cargando...</div></div>;
+    }
 
   return (
     <div className="list-item-container">

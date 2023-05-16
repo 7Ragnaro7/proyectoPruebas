@@ -28,6 +28,7 @@
 }
 
 .elemento .nombre {
+  font-family: Arial, sans-serif;
   font-weight: bold;
   font-size: 24px;
   margin-bottom: 10px;
@@ -35,13 +36,63 @@
 }
 
 .elemento .precio {
+  font-family: Arial, sans-serif;
   font-size: 20px;
   color: #555555;
 }
 
 .elemento .unidad,
 .elemento .peso {
+  font-family: Arial, sans-serif;
   font-size: 16px;
   color: #999999;
   margin-top: 5px;
+}
+
+.elemento .peso {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  color: #555555;
+}
+
+.cargando-container {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+}
+
+.cargando-container {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+}
+
+.cargando {
+  font-family: Arial, sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  color: #0022a8;
+  text-align: center;
+  position: relative;
+}
+
+.cargando::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 4px solid #0022a8;
+  border-top-color: #0022a8;
+  animation: spin 1s linear infinite;
+  top: calc(50% + 30px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
