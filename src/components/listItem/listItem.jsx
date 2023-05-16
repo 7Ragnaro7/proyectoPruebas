@@ -30,11 +30,11 @@ export function ListItem() {
 
         if (response.status === 200) {
           const lista = response.data.list_of_products;
-          const nombresCosto = lista.map((elemento) => {
-            return { nombre: elemento.name, precio: elemento.price };
+          const nombresCostoPeso = lista.map((elemento) => {
+            return { nombre: elemento.name, precio: elemento.price, peso: elemento.weight, unidad: elemento.unit };
           });
 
-          setElementosMostrados(nombresCosto);
+          setElementosMostrados(nombresCostoPeso);
           setIsLoading(false);
         }
       } catch (error) {
@@ -55,6 +55,7 @@ export function ListItem() {
         <div key={index} className="elemento">
           <p className="nombre">{elemento.nombre}</p>
           <p className="precio">{elemento.precio}</p>
+          <p className="peso">{`${elemento.peso} ${elemento.unidad}`}</p>
         </div>
       ))}
     </div>
