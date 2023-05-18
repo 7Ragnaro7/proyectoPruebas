@@ -29,13 +29,16 @@ export function Item() {
         }
         catch(error){
             console.error(error);
+            localStorage.removeItem('username');
+            localStorage.removeItem('token');
+            navigate('/');
         }
     };
 
     return(
         <div className="add-item-container">
             <form onSubmit={handleSubmit} className="add-item-form">
-                <h2 className="name-title">Nombre producto</h2>
+                <h2 className="name-title">Nuevo producto</h2>
                     <div className="product-input-container">
                         <label className="name-label">
                             Nombre producto:

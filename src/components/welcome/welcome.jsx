@@ -12,7 +12,7 @@ export function Welcome() {
 
   async function fetchToken() {
     try {
-      const response = await axios.get(API_BASE_URL+'/authorize', {
+      const response = await axios.get(API_BASE_URL + '/authorize', {
         headers: {
           'x-access-tokens': jwt_token
         }
@@ -30,24 +30,34 @@ export function Welcome() {
       navigate('/');
     }
     try {
-      fetchToken().then(response => {
+      fetchToken().then((response) => {
         if (response.status === 200) {
-          localStorage.setItem('username', response.data.username)
+          localStorage.setItem('username', response.data.username);
         }
       });
     } catch (error) {
-      console.log("ERROR");
+      console.log('ERROR');
       localStorage.removeItem('username');
       localStorage.removeItem('token');
       navigate('/');
     }
-  })
+  });
+
+  const handleLogout = () => {
+    localStorage.removeItem('username');
+    localStorage.removeItem('token');
+    navigate('/logout');
+  };
 
   return (
+    <>
+    <div className="logout-button-container">
+        <Button variant="contained" color="secondary" onClick={handleLogout} className="logout-button">
+          Logout
+        </Button>
+    </div>
     <div className="welcome-container">
-      <h1>
-        Welcome {localStorage.getItem('username')}!
-      </h1>
+      <h1>Welcome {localStorage.getItem('username')}!</h1>
       <div className="button-container">
         <Button variant="contained" color="primary" component={Link} to="/addItem" className="add-item-button">
           Agregar producto
@@ -57,5 +67,6 @@ export function Welcome() {
         </Button>
       </div>
     </div>
-  )
+    </>
+  );
 }
